@@ -24,7 +24,7 @@ function wallpaper(){
 
                 var fetchUrl= config.cdn_fetch_url+'/'+year+'/'+month+'/'+day+'/'+hour+minute+second+'_0_0.png';
                 request(fetchUrl).pipe(fs.createWriteStream('image/earth.png'));
-
+                console.log('success:'+date);
             } catch (ex) {
                 console.log('result error');
             }
