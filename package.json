@@ -1,0 +1,11 @@
+{
+  "name": "EarthLive4Mac",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "request": "^2.67.0"
+  }
+}

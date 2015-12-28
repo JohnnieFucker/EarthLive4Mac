@@ -1,0 +1,5 @@
+{
+  "himawari8_api":"http://himawari8.nict.go.jp/img/D531106/latest.json",
+  "himawari8_pic_url":"http://himawari8-dl.nict.go.jp/himawari8/img/D531106/thumbnail/550",
+  "cdn_fetch_url":"http://res.cloudinary.com/[YOUR CDN NAME]/image/fetch/http://himawari8-dl.nict.go.jp/himawari8/img/D531106/thumbnail/550"
+}
