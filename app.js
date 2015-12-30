@@ -1,10 +1,8 @@
-var ORIGINAL_IMG_WIDTH = 550;
-var ORIGINAL_IMG_HEIGHT = 550;
 var request = require('request');
 var config = require('./config.json');
 var fs = require('fs');
-setInterval(wallpaper,60*1000);
-
+wallpaper();
+setInterval(wallpaper,60*10*1000);
 function wallpaper(){
     request({
         uri: config.himawari8_api,
@@ -23,8 +21,21 @@ function wallpaper(){
                 var second = date.substr(17,2);
 
                 var fetchUrl= config.cdn_fetch_url+'/'+year+'/'+month+'/'+day+'/'+hour+minute+second+'_0_0.png';
-                request(fetchUrl).pipe(fs.createWriteStream('image/earth.png'));
-                console.log('success:'+date);
+
+                var oldFiles = [];
+                fs.readdir('./image', function (err, files) {
+                    if(err){
+                    }else{
+                        oldFiles = files;
+                    }
+                    request(fetchUrl).pipe(fs.createWriteStream('image/earth'+year+month+day+hour+minute+second+'.png'));
+                    if(fs.existsSync('image/earth'+year+month+day+hour+minute+second+'.png')){
+                        oldFiles.forEach(function(file){
+                            fs.unlink('./image/'+file);
+                        });
+                    }
+                    console.log('success:'+date);
+                });
             } catch (ex) {
                 console.log('result error');
             }
