@@ -23,15 +23,19 @@ function wallpaper(){
                 var fetchUrl= config.cdn_fetch_url+'/'+year+'/'+month+'/'+day+'/'+hour+minute+second+'_0_0.png';
 
                 var oldFiles = [];
+                var imgName = 'earth'+year+month+day+hour+minute+second+'.png';
                 fs.readdir('./image', function (err, files) {
                     if(err){
                     }else{
                         oldFiles = files;
                     }
-                    request(fetchUrl).pipe(fs.createWriteStream('image/earth'+year+month+day+hour+minute+second+'.png'));
-                    if(fs.existsSync('image/earth'+year+month+day+hour+minute+second+'.png')){
+                    console.log(oldFiles);
+                    request(fetchUrl).pipe(fs.createWriteStream('image/'+imgName));
+                    if(fs.existsSync('image/'+imgName)){
                         oldFiles.forEach(function(file){
-                            fs.unlink('./image/'+file);
+                            if(file!='imgName'){
+                                fs.unlink('./image/'+file);
+                            }
                         });
                     }
                     console.log('success:'+date);
